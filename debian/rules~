@@ -47,24 +47,24 @@ binary-indep: checkroot
 	chmod -R go=rX debian/tmp
 	dpkg --build debian/tmp ..
 
-	-rm -rf debian/edusantara-keyring-udeb
-	$(install_dir) debian/edusantara-keyring-udeb/DEBIAN/
+	-rm -rf debian/blankon-keyring-udeb
+	$(install_dir) debian/blankon-keyring-udeb/DEBIAN/
 
-	$(install_dir) debian/edusantara-keyring-udeb/usr/share/keyrings/
-	$(install_file) keyrings/edusantara-archive-keyring.gpg debian/edusantara-keyring-udeb/usr/share/keyrings/
-	install -m 755 debian/edusantara-keyring-udeb.postinst debian/edusantara-keyring-udeb/DEBIAN/postinst
+	$(install_dir) debian/blankon-keyring-udeb/usr/share/keyrings/
+	$(install_file) keyrings/blankon-archive-keyring.gpg debian/blankon-keyring-udeb/usr/share/keyrings/
+	install -m 755 debian/blankon-keyring-udeb.postinst debian/blankon-keyring-udeb/DEBIAN/postinst
 
 	# Don't let dpkg-gencontrol write incorrect guesses to debian/files.
 	# Instead, register the udeb manually.
-	dpkg-gencontrol -nedusantara-keyring-udeb_$(VERSION)_all.udeb -pedusantara-keyring-udeb -Tdebian/edusantara-keyring-udeb.substvars -Pdebian/edusantara-keyring-udeb -isp
-	chown -R root.root debian/edusantara-keyring-udeb
-	chmod -R go=rX debian/edusantara-keyring-udeb
-	dpkg --build debian/edusantara-keyring-udeb ../edusantara-keyring-udeb_$(VERSION)_all.udeb
+	dpkg-gencontrol -nblankon-keyring-udeb_$(VERSION)_all.udeb -pblankon-keyring-udeb -Tdebian/blankon-keyring-udeb.substvars -Pdebian/blankon-keyring-udeb -isp
+	chown -R root.root debian/blankon-keyring-udeb
+	chmod -R go=rX debian/blankon-keyring-udeb
+	dpkg --build debian/blankon-keyring-udeb ../blankon-keyring-udeb_$(VERSION)_all.udeb
 
 binary-arch:
 
 define checkdir
-	test -f keyrings/edusantara-archive-keyring.gpg
+	test -f keyrings/blankon-archive-keyring.gpg
 endef
 
 # Below here is fairly generic really
